@@ -25,8 +25,12 @@ const Clones = React.createClass({
         scale={this.props.scale}
         duration={this.props.duration}/>);
     });
-    return children.sort((a, b) =>
-      (a.key < b.key) ? -1 : (a.key > b.key) ? 1 : 0
+    return children.sort((a, b) => {
+        a.order = a.props['shuffle-order'] || a.key;
+        b.order = b.props['shuffle-order'] || b.key;
+        
+        (a.order < b.order) ? -1 : (a.order > b.order) ? 1 : 0
+      }
     );
   },
 
