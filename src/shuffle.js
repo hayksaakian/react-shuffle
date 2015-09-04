@@ -50,8 +50,8 @@ const Clone = React.createClass({
   displayName: 'ShuffleClone',
   getInitialState() {
     return {
-      top: this.props.style.top,
-      left: this.props.style.left,
+      top: this.props.style ? this.props.style.top : 0,
+      left: this.props.style ? this.props.style.left : 0,
       opacity: 1,
       transform: 1
     }
@@ -154,7 +154,7 @@ const Shuffle = React.createClass({
   },
 
   componentWillUnmount() {
-    document.body.removeChild(this._portalNode);
+    React.findDOMNode(this.refs.container).removeChild(this._portalNode);
     window.removeEventListener('resize', this._renderClonesInitially);
   },
 
