@@ -39,7 +39,7 @@ const App = React.createClass({
         <Shuffle duration={500} fade={false}>
           {this.state.children.map(function(letter){
             return (
-              <div className="tile" key={letter}>
+              <div className="tile" key={Math.random()} shuffle-order={letter}>
                 <img
                   src={"http://placehold.it/100x100&text=" + letter} />
               </div>
