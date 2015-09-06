@@ -16,6 +16,7 @@ const Clones = React.createClass({
     React.Children.forEach(this.props.children, (child) => {
       let style = this.props.positions[child.key];
       let key = child.key;
+      // console.log('child props', child.props)
       children.push(<Clone
         child={child}
         style={style}
@@ -23,15 +24,19 @@ const Clones = React.createClass({
         initial={this.props.initial}
         fade={this.props.fade}
         scale={this.props.scale}
-        shuffle-order={child['shuffle-order']}
+        shuffleorder={child.props.shuffleorder}
         duration={this.props.duration}/>);
     });
-    return children.sort( function (a, b){
-        let a_order = a.props['shuffle-order'] || a.key;
-        let b_order = b.props['shuffle-order'] || b.key;
-        return (a_order < b_order) ? -1 : (a_order > b_order) ? 1 : 0
-      }
-    );
+    let sorted_children = children.sort( function (a, b){
+      let a_order = a.props.shuffleorder || a.key;
+      let b_order = b.props.shuffleorder || b.key;
+      // console.log(a_order, 'a_order', b_order, 'b_order')
+      return (a_order < b_order) ? -1 : (a_order > b_order) ? 1 : 0
+    });
+    sorted_children.map(function (c) {
+      console.log(c)
+    })
+    return sorted_children
   },
 
   render() {

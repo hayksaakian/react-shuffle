@@ -7,6 +7,11 @@ const alphabet = [
   'a','b','c','d','e','f','g','h','i','j','k','l','m',
   'n','o','p','q','r','s','t','u','v','w','x','y','z']
 
+const shuffled_alphabet = [
+  "p", "x", "n", "a", "m", "g", "b", "y", "c", "e", 
+  "o", "l", "q", "i", "h", "d", "z", "r", "k", "t", 
+  "s", "v", "f", "j", "w", "u"]
+
 const App = React.createClass({
   getInitialState() {
     return {
@@ -36,12 +41,14 @@ const App = React.createClass({
     return (
       <div className="demo">
         <button type="button" onClick={this.filterChildren}>Filter Children</button>
-        <Shuffle duration={500} fade={false}>
-          {this.state.children.map(function(letter){
+        <Shuffle duration={500} fade={true}>
+          {this.state.children.map(function(letter, index){
+            var sox = shuffled_alphabet.indexOf(letter)
+            console.log(index, letter, 'shuffle-order', sox)
             return (
-              <div className="tile" key={Math.random()} shuffle-order={letter}>
+              <div className="tile" key={letter} shuffleorder={sox}>
                 <img
-                  src={"http://placehold.it/100x100&text=" + letter} />
+                  src={"http://placehold.it/100x100&text=" + sox+':'+letter} />
               </div>
             )
           })}
