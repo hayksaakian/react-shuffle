@@ -23,7 +23,7 @@ const Clones = React.createClass({
         initial={this.props.initial}
         fade={this.props.fade}
         scale={this.props.scale}
-        shuffle-order={this.props['shuffle-order']}
+        shuffle-order={child['shuffle-order']}
         duration={this.props.duration}/>);
     });
     return children.sort( function (a, b){
